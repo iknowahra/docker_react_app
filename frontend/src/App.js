@@ -13,7 +13,6 @@ function App() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
     axios.post('/api/value', { value: value }).then((response) => {
       if (response.data.success) {
         console.log('response', response);
@@ -55,8 +54,8 @@ function App() {
           />
           <button
             type="submit"
-            onClick={() => {
-              submitHandler();
+            onClick={(e) => {
+              submitHandler(e);
               setValue('');
             }}
           >
