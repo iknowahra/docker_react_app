@@ -1,0 +1,23 @@
+language: generic
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t iknowahra/docker_react_app -f ./frontend/Dockerfile.dev ./frontend
+
+script:
+  - docker run -e CI=true iknowahra/docker_react_app npm run test
+
+after_success:
+  - docker build -t iknowahra/docker_frontend ./frontend
+  - docker build -t iknowahra/docker_backend ./backend
+  - docker build -t iknowahra/docker_nginx ./nginx
+
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+
+  - docker push iknowahra/docker_frontend
+  - docker push iknowahra/docker_backend
+  - docker push iknowahra/docker_nginx
