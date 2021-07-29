@@ -4,7 +4,7 @@ const db = require('./db');
 
 const app = express();
 
-const PORT = 5000;
+const port = 5000;
 
 db.pool.query(
   `CREATE TABLE lists (
@@ -16,6 +16,9 @@ db.pool.query(
     console.log('results', results);
   },
 );
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/api/hi', (req, res) => {
   res.status(200).send('good');
@@ -38,6 +41,6 @@ app.post('/api/value', (req, res, next) => {
   );
 });
 
-app.listen(PORT, () => {
-  console.log('Server is listening...');
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
