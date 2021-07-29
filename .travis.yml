@@ -21,15 +21,14 @@ after_success:
   - docker push iknowahra/docker_frontend
   - docker push iknowahra/docker_backend
   - docker push iknowahra/docker_nginx
-
-deploy:
-  provider: elasticbeanstalk
-  region: 'ap-southeast-1'
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  app: 'docker_react_app'
-  env: 'Dockerreactapp-env'
-  bucket_name: elasticbeanstalk-ap-southeast-1-410534288777
-  bucket_path: 'docker_react_app'
-  on:
-    branch: main
+# deploy:
+#   provider: elasticbeanstalk
+#   region: 'ap-southeast-1'
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_ACCESS_KEY
+#   app: 'docker_react_app'
+#   env: 'Dockerreactapp-env'
+#   bucket_name: elasticbeanstalk-ap-southeast-1-410534288777
+#   bucket_path: 'docker_react_app'
+#   on:
+#     branch: main
